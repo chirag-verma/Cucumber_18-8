@@ -32,7 +32,7 @@ public class Step {
 	@Given("User Launch Chrome Browser")
 	public void User_Launch_Chrome_Browser() throws IOException {
 
-		FileInputStream ip = new FileInputStream("D:\\Users/VermaC/MeerQATS_Cucumber/Config.Properties");
+		FileInputStream ip = new FileInputStream("D:\\Users/VermaC/Workspace1/MeerQATS_Cucumber_POM/Config.Prope");
 		prop = new Properties();
 
 		prop.load(ip);
@@ -118,8 +118,8 @@ public class Step {
 	@Then("Assign newly created cases to Reviewer")
 	public void Assign_newly_created_cases_to_Reviewer() throws InterruptedException {
 
-		driver.switchTo().frame(1);
-		Thread.sleep(2000);
+		driver.switchTo().frame("PegaGadget2Ifr");
+		Thread.sleep(3000);
 		Actions act = new Actions(driver);
 
 		act.moveToElement(driver.findElement(By.xpath("//span[text()='QualityReview']"))).doubleClick().build()
@@ -145,7 +145,7 @@ public class Step {
 	public void on_Selecting_a_Review_Case() throws InterruptedException {
 		driver.switchTo().frame(1);
 		driver.findElements(By.xpath("//h1[text()='My Work']/following::td[@data-attribute-name='QRS ID']/div/span/a"))
-				.get(14).click();
+				.get(0).click();
 		Thread.sleep(6000);
 	}
 
