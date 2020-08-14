@@ -32,7 +32,7 @@ public class Step {
 	@Given("User Launch Chrome Browser")
 	public void User_Launch_Chrome_Browser() throws IOException {
 
-		FileInputStream ip = new FileInputStream("D:\\Users/VermaC/Workspace1/MeerQATS_Cucumber_POM/Config.Prope");
+		FileInputStream ip = new FileInputStream("D:\\Users/VermaC/Workspace1/MeerQATS_Cucumber_POM/Config.Properties");
 		prop = new Properties();
 
 		prop.load(ip);
