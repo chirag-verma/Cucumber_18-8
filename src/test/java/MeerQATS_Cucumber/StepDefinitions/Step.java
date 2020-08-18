@@ -6,11 +6,14 @@ import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
 
 import com.qats.page.QATS_HomePage;
 import com.qats.page.QATS_LoginPage;
@@ -20,7 +23,7 @@ import io.cucumber.java.After;
 import io.cucumber.java.en.*;
 
 public class Step {
-
+	Actions act;
 	WebDriver driver;
 
 	Properties prop;
@@ -37,7 +40,8 @@ public class Step {
 
 		prop.load(ip);
 
-		System.setProperty("webdriver.chrome.driver", "D:\\Users/VermaC/Workspace1/MeerQATS_Cucumber_POM/Drivers/chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver",
+				"D:\\Users/VermaC/Workspace1/MeerQATS_Cucumber_POM/Drivers/chromedriver.exe");
 		/* Launching the browser? */
 		driver = new ChromeDriver();
 
@@ -63,10 +67,19 @@ public class Step {
 		System.out.println(title);
 	}
 
-	@When("User enters Username and Password and click login")
-	public void User_enters_Username_and_Password_and_click_login() throws InterruptedException, IOException {
+	@When("Manager enters Username and Password and click login")
+	public void Manager_enters_Username_and_Password_and_click_login() throws InterruptedException, IOException {
 
 		homepage = loginpage.Login(prop.getProperty("ManagerUserName"), prop.getProperty("ManagerPassword"));
+
+		Thread.sleep(4000);
+
+	}
+
+	@When("Reviewer enters Username and Password and click login")
+	public void Reviewer_enters_Username_and_Password_and_click_login() throws InterruptedException, IOException {
+
+		homepage = loginpage.Login(prop.getProperty("ReviewerUserName"), prop.getProperty("ReviewerPassword"));
 
 		Thread.sleep(4000);
 
@@ -89,6 +102,68 @@ public class Step {
 		driver.switchTo().frame(1);
 
 		Thread.sleep(4000);
+
+	}
+	
+	@When("After clicking on Create Manual Case")
+	public void After_clicking_on_Create_Manual_Case(){
+		driver.findElement(By.xpath("//button[text()='Create Manual Case']")).click();
+		
+	}	
+	
+
+	@When("User Clicks Create Manual Case")
+	public void User_Clicks_Create_Manual_Case() throws InterruptedException {
+
+		homepage.CreateManualCase();
+
+		Thread.sleep(4000);
+
+	}
+
+	@When("After entering Manual Case fields user clicks on create case")
+	public void After_entering_Manual_Case_fields_user_clicks_on_create_case() throws InterruptedException {
+		
+		if(driver.getTitle().equals("QA Manager")){
+			
+			driver.switchTo().defaultContent();
+			driver.switchTo().frame("PegaGadget1Ifr");
+			Thread.sleep(2000);
+		}
+
+		driver.findElement(By.xpath("//input[@name='$PpyDisplayHarness$pManualRatingAction$l1$pRatingActionID']"))
+				.sendKeys(Integer.toString(2306277));
+
+		driver.findElement(By.xpath("//input[@name='$PpyDisplayHarness$pManualRatingAction$l1$pRatingActionDesc']"))
+				.sendKeys("Sample Case");
+
+		Select sel = new Select(driver
+				.findElement(By.xpath("//select[@name='$PpyDisplayHarness$pManualRatingAction$l1$pSourceName']")));
+
+		sel.selectByVisibleText("ORP");
+
+		driver.findElement(By.xpath("//img[@name='CalendarImg-74605107']")).click();
+
+		driver.findElement(By.xpath("//a[@class='today-link']")).click();
+
+		driver.findElement(By.xpath("//label[text()='Lead Analyst Name']/following-sibling::div/input[@type='text']"))
+				.sendKeys("David Sweeney");
+
+		driver.findElement(By.xpath("//label[text()='PACR']/following-sibling::div/input[@type='text']")).sendKeys("");
+
+		driver.findElement(By.xpath("//button[text()='Create Case']")).click();
+		
+		Thread.sleep(2000);
+		
+		driver.navigate().refresh();
+
+		Thread.sleep(4000);
+
+		
+	}
+
+	@Then("User clicks on create case")
+	public void user_clicks_on_create_case() {
 
 	}
 
@@ -126,9 +201,9 @@ public class Step {
 				.perform();
 		Thread.sleep(2000);
 		System.out.println(driver.findElements(By.xpath("//img[@src='webwb/px-explorer-drag-icon.png']")).size());
-		
-		act.clickAndHold(driver.findElement(By.xpath("//img[@src='webwb/px-explorer-drag-icon.png']"))).moveToElement(driver.findElement(By.xpath("//span[@data-name='QATS User']"))).build()
-		.perform();
+
+		act.clickAndHold(driver.findElement(By.xpath("//img[@src='webwb/px-explorer-drag-icon.png']")))
+				.moveToElement(driver.findElement(By.xpath("//span[@data-name='QATS User']"))).build().perform();
 
 		Thread.sleep(5000);
 
@@ -138,12 +213,22 @@ public class Step {
 	public void User_Clicks_on_My_Work() throws InterruptedException {
 		driver.findElement(By.xpath("//span[text()='My Work']")).click();
 		Thread.sleep(2000);
-
+		;
 	}
 
 	@When("on Selecting a Review Case")
 	public void on_Selecting_a_Review_Case() throws InterruptedException {
-		driver.switchTo().frame(1);
+		if (driver.getTitle().equals("QA Manager")) {
+			driver.switchTo().frame(1);
+		}
+
+		driver.findElement(By.xpath("//div[text()='Assignment Task']/following::a[@id='pui_filter']")).click();
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("//label[contains(text(),'Rating Com')]/following::input[@type='checkbox']"))
+				.click();
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("//button[text()='Apply']")).click();
+		Thread.sleep(3000);
 		driver.findElements(By.xpath("//h1[text()='My Work']/following::td[@data-attribute-name='QRS ID']/div/span/a"))
 				.get(0).click();
 		Thread.sleep(6000);

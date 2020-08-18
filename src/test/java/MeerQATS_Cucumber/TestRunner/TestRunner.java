@@ -6,18 +6,13 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-		features = { "Feature//MeerQATS_Login.feature", },
-        glue = "MeerQATS_Cucumber.StepDefinitions",
-
-		monochrome = true, 
+		features = {"Feature/Manager.feature"},
+        glue = {"MeerQATS_Cucumber.StepDefinitions"},
+        monochrome = true, 
 		plugin = { "pretty", "html:Reports" },
-		
-		tags={"@Second"},
-		strict=true
-		
-
+		tags = {"@Fourth"}, 
+		strict = true
 )
-
 public class TestRunner {
 
 }

@@ -23,7 +23,14 @@ public class QATS_HomePage {
 	}
 	
 	public  void clickonQAReview(){
-		driver.findElement(By.xpath("//span[text()='Create QA Review']")).click();
+		
+			driver.findElement(By.xpath("//span[text()='Create QA Review']")).click();
+		
+	}
+	
+	public void CreateManualCase(){
+		
+		driver.findElement(By.xpath("//span[text()='Create Manual Case']")).click();
 	}
 	
 	public List<WebElement> CreateCase_CheckBoxList(){

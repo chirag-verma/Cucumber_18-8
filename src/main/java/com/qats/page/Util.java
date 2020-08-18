@@ -2,6 +2,7 @@ package com.qats.page;
 
 import java.util.List;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -22,13 +23,15 @@ public class Util {
 
 	public void teardown() throws InterruptedException {
 
-		driver.switchTo().defaultContent();
+		if (driver.getTitle().equals("QA Manager")) {
+			driver.switchTo().defaultContent();
+		}
 
 		driver.findElement(By.xpath(".//a[@class='Header_nav']")).click();
 
-		Thread.sleep(2000);
+		Thread.sleep(3000);
 
-		driver.findElement(By.xpath("//span[text()='Log off']")).click();
+		driver.findElement(By.xpath("//span[contains(text(),'Log of')]")).click();
 
 		Thread.sleep(2000);
 
@@ -38,14 +41,16 @@ public class Util {
 	public void PerformQuestionnaire() throws InterruptedException {
 
 		driver.switchTo().defaultContent();
-		driver.switchTo().frame("PegaGadget2Ifr");
-		for (int repeat = 0; repeat < 1000; repeat++) {
-			try {
 
-				for (int count = 0; count < 2; count++) {
-					driver.findElements(By.xpath("//span[text()='Upload Vital Records']")).get(0).click();
-					Thread.sleep(4000);
+		if (driver.getTitle().equals("QA Manager")) {
+			driver.switchTo().frame("PegaGadget2Ifr");
+		}
 
+		for (int count = 0; count < 3; count++) {
+			driver.findElements(By.xpath("//span[text()='Upload Vital Records']")).get(0).click();
+			Thread.sleep(4000);
+			for (int repeat = 0; repeat < 1000; repeat++) {
+				try {
 					List<WebElement> ls1 = driver.findElements(By.xpath(
 							"//span[text()='The Rating Committee Package was uploaded']//following::label[text()='Yes']"));
 
@@ -54,13 +59,25 @@ public class Util {
 						ls1.get(j).click();
 
 					}
-
-					Thread.sleep(2000);
-
+					break;
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					continue;
+				}
+			}
+			Thread.sleep(2000);
+			for (int repeat = 0; repeat < 1000; repeat++) {
+				try {
 					driver.findElement(By.xpath("//button[text()='Continue']")).click();
-
-					Thread.sleep(2000);
-
+					break;
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					continue;
+				}
+			}
+			Thread.sleep(2000);
+			for (int repeat = 0; repeat < 1000; repeat++) {
+				try {
 					List<WebElement> ls2 = driver.findElements(By.xpath(
 							"//span[text()='Rating Recommendation included in the RCP']//following::label[text()='Yes']"));
 
@@ -69,12 +86,26 @@ public class Util {
 						ls2.get(j).click();
 
 					}
+					break;
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					continue;
+				}
+			}
+			Thread.sleep(2000);
 
-					Thread.sleep(2000);
-
+			for (int repeat = 0; repeat < 1000; repeat++) {
+				try {
 					driver.findElement(By.xpath("//button[text()='Continue']")).click();
-					Thread.sleep(2000);
-
+					break;
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					continue;
+				}
+			}
+			Thread.sleep(2000);
+			for (int repeat = 0; repeat < 1000; repeat++) {
+				try {
 					List<WebElement> ls3 = driver.findElements(By.xpath(
 							"//span[contains(text(),'All Rating Committee participa')]//following::label[text()='Yes']"));
 
@@ -83,12 +114,27 @@ public class Util {
 						ls3.get(j).click();
 
 					}
+					break;
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					continue;
+				}
+			}
 
-					Thread.sleep(2000);
+			Thread.sleep(2000);
 
+			for (int repeat = 0; repeat < 1000; repeat++) {
+				try {
 					driver.findElement(By.xpath("//button[text()='Continue']")).click();
-					Thread.sleep(2000);
-
+					break;
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					continue;
+				}
+			}
+			Thread.sleep(2000);
+			for (int repeat = 0; repeat < 1000; repeat++) {
+				try {
 					List<WebElement> ls4 = driver.findElements(By.xpath(
 							"//span[contains(text(),'Methodology Rating Group approval email')]//following::label[text()='Yes']"));
 
@@ -97,12 +143,27 @@ public class Util {
 						ls4.get(j).click();
 
 					}
+					break;
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					continue;
+				}
+			}
 
-					Thread.sleep(2000);
+			Thread.sleep(2000);
 
+			for (int repeat = 0; repeat < 1000; repeat++) {
+				try {
 					driver.findElement(By.xpath("//button[text()='Continue']")).click();
-					Thread.sleep(2000);
-
+					break;
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					continue;
+				}
+			}
+			Thread.sleep(2000);
+			for (int repeat = 0; repeat < 1000; repeat++) {
+				try {
 					List<WebElement> ls5 = driver.findElements(By.xpath(
 							"//span[text()='Rating Committee Chair eligible to chair per RPO RC Chair Approval list ']//following::label[text()='Yes']"));
 
@@ -111,12 +172,27 @@ public class Util {
 						ls5.get(j).click();
 
 					}
+					break;
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					continue;
+				}
+			}
 
-					Thread.sleep(2000);
+			Thread.sleep(2000);
 
+			for (int repeat = 0; repeat < 1000; repeat++) {
+				try {
 					driver.findElement(By.xpath("//button[text()='Continue']")).click();
-					Thread.sleep(2000);
-
+					break;
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					continue;
+				}
+			}
+			Thread.sleep(2000);
+			for (int repeat = 0; repeat < 1000; repeat++) {
+				try {
 					List<WebElement> ls6 = driver.findElements(By.xpath(
 							"//span[contains(text(),'Is the Lead Analyst correctly reflected and any differences from RCP')]//following::label[text()='Yes']"));
 
@@ -125,13 +201,28 @@ public class Util {
 						ls6.get(j).click();
 
 					}
+					break;
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					continue;
+				}
+			}
 
-					Thread.sleep(2000);
+			Thread.sleep(2000);
 
+			for (int repeat = 0; repeat < 1000; repeat++) {
+				try {
 					driver.findElement(By.xpath("//button[text()='Continue']")).click();
+					break;
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					continue;
+				}
+			}
 
-					Thread.sleep(2000);
-
+			Thread.sleep(2000);
+			for (int repeat = 0; repeat < 1000; repeat++) {
+				try {
 					List<WebElement> ls7 = driver.findElements(By.xpath(
 							"//span[contains(text(),'eader and footer is unobstructed on Draft Press Release (PR) and attached to')]//following::label[text()='Yes']"));
 
@@ -140,12 +231,27 @@ public class Util {
 						ls7.get(j1).click();
 
 					}
+					break;
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					continue;
+				}
+			}
 
-					Thread.sleep(2000);
+			Thread.sleep(2000);
 
+			for (int repeat = 0; repeat < 1000; repeat++) {
+				try {
 					driver.findElement(By.xpath("//button[text()='Continue']")).click();
-					Thread.sleep(2000);
-
+					break;
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					continue;
+				}
+			}
+			Thread.sleep(2000);
+			for (int repeat = 0; repeat < 1000; repeat++) {
+				try {
 					List<WebElement> ls8 = driver.findElements(By.xpath(
 							"//span[contains(text(),'actual Elements and Data Sources are present and complete in')]//following::label[text()='Yes']"));
 
@@ -154,11 +260,27 @@ public class Util {
 						ls8.get(j2).click();
 
 					}
+					break;
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					continue;
+				}
+			}
 
-					Thread.sleep(2000);
+			Thread.sleep(2000);
 
+			for (int repeat = 0; repeat < 1000; repeat++) {
+				try {
 					driver.findElement(By.xpath("//button[text()='Continue']")).click();
-
+					break;
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					continue;
+				}
+			}
+			Thread.sleep(2000);
+			for (int repeat = 0; repeat < 1000; repeat++) {
+				try {
 					List<WebElement> ls9 = driver.findElements(By.xpath(
 							"//span[contains(text(),'Final Rating Committee Outcome as noted in the Addendum Vote Tally is same as Press Release,')]//following::label[text()='Yes']"));
 
@@ -167,29 +289,28 @@ public class Util {
 						ls9.get(j).click();
 
 					}
-
-					Thread.sleep(2000);
-
-					Js = (JavascriptExecutor) driver;
-					Js.executeScript("scroll(0,-400)");
-
-					Thread.sleep(3000);
+					break;
+				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					continue;
 				}
+			}
 
+			Thread.sleep(2000);
+
+		}
+
+		for (int repeat = 0; repeat < 1000; repeat++) {
+			try {
 				driver.findElement(By.xpath("//button[text()='Complete Review']")).click();
 				break;
-			} catch (Exception e) {
-				Js = (JavascriptExecutor) driver;
-				Js.executeScript("scroll(0,-400)");
-
-				Thread.sleep(3000);
+			} catch (Exception e1) {
 				// TODO Auto-generated catch block
 				continue;
 			}
 		}
 
-		Thread.sleep(6000);
+		Thread.sleep(4000);
+
 	}
 }
