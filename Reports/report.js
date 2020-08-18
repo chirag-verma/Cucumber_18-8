@@ -1,6 +1,6 @@
-$(document).ready(function() {var formatter = new CucumberHTML.DOMFormatter($('.cucumber-report'));formatter.uri("file:Feature/Manager.feature");
+$(document).ready(function() {var formatter = new CucumberHTML.DOMFormatter($('.cucumber-report'));formatter.uri("file:Feature/Reviewer.feature");
 formatter.feature({
-  "name": "Manager functionalities",
+  "name": "Reviewer functionalities",
   "description": "",
   "keyword": "Feature"
 });
@@ -40,11 +40,11 @@ formatter.result({
   "status": "passed"
 });
 formatter.step({
-  "name": "Manager enters Username and Password and click login",
+  "name": "Reviewer enters Username and Password and click login",
   "keyword": "And "
 });
 formatter.match({
-  "location": "MeerQATS_Cucumber.StepDefinitions.Step.Manager_enters_Username_and_Password_and_click_login()"
+  "location": "MeerQATS_Cucumber.StepDefinitions.Step.Reviewer_enters_Username_and_Password_and_click_login()"
 });
 formatter.result({
   "status": "passed"
@@ -60,31 +60,21 @@ formatter.result({
   "status": "passed"
 });
 formatter.scenario({
-  "name": "Create Review Cases and assign to Reviewer",
+  "name": "Create Review Cases",
   "description": "",
   "keyword": "Scenario",
   "tags": [
     {
-      "name": "@Fourth"
+      "name": "@Second"
     }
   ]
 });
 formatter.step({
-  "name": "User Clicks Create QA Review",
+  "name": "User Clicks Create Manual Case",
   "keyword": "When "
 });
 formatter.match({
-  "location": "MeerQATS_Cucumber.StepDefinitions.Step.User_Clicks_Create_QA_Review()"
-});
-formatter.result({
-  "status": "passed"
-});
-formatter.step({
-  "name": "After clicking on Create Manual Case",
-  "keyword": "And "
-});
-formatter.match({
-  "location": "MeerQATS_Cucumber.StepDefinitions.Step.After_clicking_on_Create_Manual_Case()"
+  "location": "MeerQATS_Cucumber.StepDefinitions.Step.User_Clicks_Create_Manual_Case()"
 });
 formatter.result({
   "status": "passed"

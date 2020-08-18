@@ -9,9 +9,6 @@ Then User enter MeerQATS HomePage
 
 @First
 Scenario: Login as Manager
-When User enter the the MeerQATS login page
-And After Verifying login page title
-And Manager enters Username and Password and click login
 Then User enter MeerQATS HomePage
 
 @Second

@@ -22,6 +22,8 @@ public class Util {
 	}
 
 	public void teardown() throws InterruptedException {
+		
+		Thread.sleep(3000);
 
 		if (driver.getTitle().equals("QA Manager")) {
 			driver.switchTo().defaultContent();

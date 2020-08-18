@@ -6,11 +6,11 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-		features = {"Feature/Manager.feature"},
+		features = {"Feature/Reviewer.feature"},
         glue = {"MeerQATS_Cucumber.StepDefinitions"},
         monochrome = true, 
 		plugin = { "pretty", "html:Reports" },
-		tags = {"@Fourth"}, 
+		tags = {"@Second"}, 
 		strict = true
 )
 public class TestRunner {

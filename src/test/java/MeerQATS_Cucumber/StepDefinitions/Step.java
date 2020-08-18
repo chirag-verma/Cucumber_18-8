@@ -6,15 +6,13 @@ import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.Select;
-
+import com.qats.page.Create_QAReview_ManualCase;
+import com.qats.page.MyWork;
 import com.qats.page.QATS_HomePage;
 import com.qats.page.QATS_LoginPage;
 import com.qats.page.Util;
@@ -28,8 +26,11 @@ public class Step {
 
 	Properties prop;
 
+	Create_QAReview_ManualCase createcase;
+
 	QATS_LoginPage loginpage;
 	QATS_HomePage homepage;
+	MyWork mywork;
 	Util util;
 
 	@Given("User Launch Chrome Browser")
@@ -82,6 +83,8 @@ public class Step {
 		homepage = loginpage.Login(prop.getProperty("ReviewerUserName"), prop.getProperty("ReviewerPassword"));
 
 		Thread.sleep(4000);
+		
+		
 
 	}
 
@@ -89,6 +92,8 @@ public class Step {
 	public void User_enter_MeerQATS_HomePage() {
 
 		System.out.println(homepage.HomePageTitle());
+		createcase = new Create_QAReview_ManualCase(driver);
+		mywork = new MyWork(driver);
 
 	}
 
@@ -104,68 +109,32 @@ public class Step {
 		Thread.sleep(4000);
 
 	}
-	
+
 	@When("After clicking on Create Manual Case")
-	public void After_clicking_on_Create_Manual_Case(){
-		driver.findElement(By.xpath("//button[text()='Create Manual Case']")).click();
-		
-	}	
+	public void After_clicking_on_Create_Manual_Case() {
+
 	
+		createcase.clickoncreatemanualcase();
+	}
 
 	@When("User Clicks Create Manual Case")
 	public void User_Clicks_Create_Manual_Case() throws InterruptedException {
 
-		homepage.CreateManualCase();
+		homepage.clickonCreateManualCase();
 
 		Thread.sleep(4000);
+		
 
 	}
 
 	@When("After entering Manual Case fields user clicks on create case")
 	public void After_entering_Manual_Case_fields_user_clicks_on_create_case() throws InterruptedException {
-		
-		if(driver.getTitle().equals("QA Manager")){
-			
-			driver.switchTo().defaultContent();
-			driver.switchTo().frame("PegaGadget1Ifr");
-			Thread.sleep(2000);
-		}
 
-		driver.findElement(By.xpath("//input[@name='$PpyDisplayHarness$pManualRatingAction$l1$pRatingActionID']"))
-				.sendKeys(Integer.toString(2306277));
-
-		driver.findElement(By.xpath("//input[@name='$PpyDisplayHarness$pManualRatingAction$l1$pRatingActionDesc']"))
-				.sendKeys("Sample Case");
-
-		Select sel = new Select(driver
-				.findElement(By.xpath("//select[@name='$PpyDisplayHarness$pManualRatingAction$l1$pSourceName']")));
-
-		sel.selectByVisibleText("ORP");
-
-		driver.findElement(By.xpath("//img[@name='CalendarImg-74605107']")).click();
-
-		driver.findElement(By.xpath("//a[@class='today-link']")).click();
-
-		driver.findElement(By.xpath("//label[text()='Lead Analyst Name']/following-sibling::div/input[@type='text']"))
-				.sendKeys("David Sweeney");
-
-		driver.findElement(By.xpath("//label[text()='PACR']/following-sibling::div/input[@type='text']")).sendKeys("");
-
-		driver.findElement(By.xpath("//button[text()='Create Case']")).click();
-		
-		Thread.sleep(2000);
-		
-		driver.navigate().refresh();
-
-		Thread.sleep(4000);
-
-		
-	}
-
-	@Then("User clicks on create case")
-	public void user_clicks_on_create_case() {
+		createcase.createmanualcaseandclick();
 
 	}
+
+
 
 	@When("After selecting two review cases and click on Create Case")
 	public void After_selecting_two_review_cases_and_click_on_Create_Case() throws InterruptedException {
@@ -174,9 +143,8 @@ public class Step {
 		ls.get(0).click();
 
 		Thread.sleep(3000);
-
-		Thread.sleep(2000);
-		driver.findElement(By.xpath("//button[text()='Create Case']")).click();
+	createcase.clickoncreatecase();
+	
 
 	}
 
@@ -213,25 +181,13 @@ public class Step {
 	public void User_Clicks_on_My_Work() throws InterruptedException {
 		driver.findElement(By.xpath("//span[text()='My Work']")).click();
 		Thread.sleep(2000);
-		;
+
 	}
 
 	@When("on Selecting a Review Case")
 	public void on_Selecting_a_Review_Case() throws InterruptedException {
-		if (driver.getTitle().equals("QA Manager")) {
-			driver.switchTo().frame(1);
-		}
-
-		driver.findElement(By.xpath("//div[text()='Assignment Task']/following::a[@id='pui_filter']")).click();
-		Thread.sleep(2000);
-		driver.findElement(By.xpath("//label[contains(text(),'Rating Com')]/following::input[@type='checkbox']"))
-				.click();
-		Thread.sleep(2000);
-		driver.findElement(By.xpath("//button[text()='Apply']")).click();
-		Thread.sleep(3000);
-		driver.findElements(By.xpath("//h1[text()='My Work']/following::td[@data-attribute-name='QRS ID']/div/span/a"))
-				.get(0).click();
-		Thread.sleep(6000);
+		
+		mywork.selectuploadvitalrecordsreviewcase();
 	}
 
 	@Then("After Completing the Questionnaire Click on Submit Review")

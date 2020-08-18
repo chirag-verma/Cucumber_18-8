@@ -28,7 +28,7 @@ public class QATS_HomePage {
 		
 	}
 	
-	public void CreateManualCase(){
+	public void clickonCreateManualCase(){
 		
 		driver.findElement(By.xpath("//span[text()='Create Manual Case']")).click();
 	}

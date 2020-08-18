@@ -15,7 +15,6 @@ Then User enter MeerQATS HomePage
 Scenario: Create Review Cases 
 When User Clicks Create Manual Case
 And After entering Manual Case fields user clicks on create case
-Then User clicks on create case
 
 @Third
 Scenario: Complete Questionnaire and send for Review
