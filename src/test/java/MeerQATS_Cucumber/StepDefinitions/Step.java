@@ -83,8 +83,6 @@ public class Step {
 		homepage = loginpage.Login(prop.getProperty("ReviewerUserName"), prop.getProperty("ReviewerPassword"));
 
 		Thread.sleep(4000);
-		
-		
 
 	}
 
@@ -113,7 +111,6 @@ public class Step {
 	@When("After clicking on Create Manual Case")
 	public void After_clicking_on_Create_Manual_Case() {
 
-	
 		createcase.clickoncreatemanualcase();
 	}
 
@@ -123,18 +120,17 @@ public class Step {
 		homepage.clickonCreateManualCase();
 
 		Thread.sleep(4000);
-		
 
 	}
 
 	@When("After entering Manual Case fields user clicks on create case")
 	public void After_entering_Manual_Case_fields_user_clicks_on_create_case() throws InterruptedException {
 
-		createcase.createmanualcaseandclick();
+		createcase.createmanualcaseandclick(prop.getProperty("ActionID"), prop.getProperty("CaseDesc"),
+				prop.getProperty("Sourcename"));
+		mywork.displaynewlycreatedreviewcase(prop.getProperty("ActionID"));
 
 	}
-
-
 
 	@When("After selecting two review cases and click on Create Case")
 	public void After_selecting_two_review_cases_and_click_on_Create_Case() throws InterruptedException {
@@ -143,8 +139,7 @@ public class Step {
 		ls.get(0).click();
 
 		Thread.sleep(3000);
-	createcase.clickoncreatecase();
-	
+		createcase.clickoncreatecase();
 
 	}
 
@@ -186,7 +181,7 @@ public class Step {
 
 	@When("on Selecting a Review Case")
 	public void on_Selecting_a_Review_Case() throws InterruptedException {
-		
+
 		mywork.selectuploadvitalrecordsreviewcase();
 	}
 

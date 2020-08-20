@@ -21,7 +21,7 @@ public class Create_QAReview_ManualCase {
 		driver.findElement(By.xpath("//button[text()='Create Manual Case']")).click();
 	}
 
-	public void createmanualcaseandclick() throws InterruptedException {
+	public void createmanualcaseandclick(String actid, String CaseDesc,String Source) throws InterruptedException {
 		if (driver.getTitle().equals("QA Manager")) {
 
 			driver.switchTo().defaultContent();
@@ -32,15 +32,15 @@ public class Create_QAReview_ManualCase {
 	
 
 		driver.findElement(By.xpath("//input[@name='$PpyDisplayHarness$pManualRatingAction$l1$pRatingActionID']"))
-				.sendKeys(Integer.toString(2306277));
+				.sendKeys(actid);
 
 		driver.findElement(By.xpath("//input[@name='$PpyDisplayHarness$pManualRatingAction$l1$pRatingActionDesc']"))
-				.sendKeys("Sample Case");
+				.sendKeys(CaseDesc);
 
 		Select sel = new Select(driver
 				.findElement(By.xpath("//select[@name='$PpyDisplayHarness$pManualRatingAction$l1$pSourceName']")));
 
-		sel.selectByVisibleText("ORP");
+		sel.selectByVisibleText(Source);
 
 		driver.findElement(By.xpath("//img[@name='CalendarImg-74605107']")).click();
 
